@@ -6,6 +6,9 @@
  * BSD 2-clause license. See the LICENSE file for details.
  **************************************************************************/
 
+// Package ingest provides interfaces for communicating with Gravwell indexers.
+// The package exports many low-level interfaces (needed for other Gravwell components);
+// for a typical ingester, only the IngestMuxer will be required.
 package ingest
 
 import (

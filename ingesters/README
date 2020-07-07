@@ -1,18 +1,32 @@
-Sample ingesters for Gravwell.
+# Ingesters for Gravwell
 
-fileFollow: Watches for & ingests updates to specific files/directories, e.g. /var/log/auth.log
-networkLog: Captures & ingests network traffic from interfaces.
-SimpleRelay: Listens on TCP/UDP for log events. Can ingest either newline-delimited events or syslog's RFC 5424 format.
-massFile:  Bulk file optimization and ingest
-session:   Ingest large entries using tcp session transfers
+This directory contains the source code for many Gravwell ingesters. The following are officially distributed by Gravwell as pre-built packages; see [the Gravwell wiki](https://docs.gravwell.io) for download links:
+
 GooglePubSubIngester: Ingest from the Google Cloud Platform Pub Sub system
+HttpIngester: Ingest data from HTTP requests (web hooks, etc.)
 KinesisIngester:  Ingest from AWS Kinesis
+O365Ingester: Capture logs from Office 365
+PacketFleet: Integrate with Google's Stenographer tool to capture packet data on-demand
+SimpleRelay: Listens on TCP/UDP for log events. Can ingest either newline-delimited events or syslog's RFC 5424 format.
+collectd: Listens for & ingests collectd records.
+fileFollow: Watches for & ingests updates to specific files/directories, e.g. /var/log/auth.log
+kafka_consumer: Ingest entries from Kafka.
+netflow: Capture & ingest Netflow v5, v9, and IPFIX records.
+networkLog: Captures & ingests network traffic from interfaces.
+SQS Ingester: Ingest from Amazon SQS.
+winevents: Ingest Windows Event logs to Gravwell.
 
-go install github.com/gravwell/ingesters/fileFollow
-go install github.com/gravwell/ingesters/networkLog
-go install github.com/gravwell/ingesters/SimpleRelay
-go install github.com/gravwell/ingesters/massFile
-go install github.com/gravwell/ingesters/session
-go install github.com/gravwell/ingesters/GooglePubSubIngester
-go install github.com/gravwell/ingesters/KinesisIngester
+There are also several smaller ingesters built for specific tasks which are not officially distributed by Gravwell:
 
+canbus: Ingests canbus records.
+diskmonitor: Monitor a disk or partition and ingest information about its usage.
+hackernews_ingester: Ingest all comments and stories on Hacker News.
+massFile:  Bulk file optimization and ingest.
+multiFile: Import a collection of files into Gravwell at once.
+pcapFileIngester: Ingest the contents of a pcap packet-capture file.
+reddit_ingester: Fetches and ingests Reddit posts.
+regexFile: Ingests the contents of a file, breaking entries based on a custom regex rather than on newlines.
+reimport: Imports a set of entries downloaded in JSON format from a Gravwell query.
+session:   Ingest large entries using tcp session transfers.
+singleFile: Ingests a single file, with each line as one entry.
+xlsxIngester: Parse and ingest an XLSX spreadsheet file.

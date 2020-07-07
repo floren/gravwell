@@ -6,6 +6,8 @@
  * BSD 2-clause license. See the LICENSE file for details.
  **************************************************************************/
 
+// Package filewatch implements tools to statefully watch files and directories
+// for changes.
 package filewatch
 
 import (

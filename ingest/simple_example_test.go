@@ -25,16 +25,33 @@ var (
 // SimplestExample is the simplest possible example of ingesting a single Entry.
 func Example_simplest() {
 	// Get an IngestConnection
-	igst, err := ingest.InitializeConnection(dst, sharedSecret, simple_tags, "", "", false)
+	ingestConfig := ingest.UniformMuxerConfig{
+		Destinations: []string{dst},
+		Tags:         simple_tags,
+		Auth:         sharedSecret,
+		PublicKey:    ``,
+		PrivateKey:   ``,
+		LogLevel:     "WARN",
+	}
+	// Start the ingester
+	igst, err := ingest.NewUniformMuxer(ingestConfig)
 	if err != nil {
-		log.Fatalf("Couldn't open connection to ingester: %v", err)
+		log.Fatalf("Failed build our ingest system: %v\n", err)
 	}
 	defer igst.Close()
+	if err := igst.Start(); err != nil {
+		log.Fatalf("Failed start our ingest system: %v\n", err)
+	}
+
+	// Wait for connection to indexers
+	if err := igst.WaitForHot(0); err != nil {
+		log.Fatalf("Timedout waiting for backend connections: %v\n", err)
+	}
 
 	// We need to get the numeric value for the tag we're using
-	tagid, ok := igst.GetTag(simple_tags[0])
-	if !ok {
-		log.Fatal("couldn't look up tag")
+	tagid, err := igst.GetTag(simple_tags[0])
+	if err != nil {
+		log.Fatalf("Failed to get tag: %v", err)
 	}
 
 	// Now we'll create an Entry

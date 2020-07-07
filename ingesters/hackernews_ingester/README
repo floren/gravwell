@@ -4,7 +4,7 @@ This is a simple ingester to grab Hacker News comments. We just run it from the 
 
 Get it:
 
-	go get github.com/gravwell/ingesters/hackernews_ingester
+	go get github.com/gravwell/gravwell/ingesters/hackernews_ingester
 
 Run it with Gravwell on the local machine:
 

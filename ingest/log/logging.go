@@ -6,6 +6,7 @@
  * BSD 2-clause license. See the LICENSE file for details.
  **************************************************************************/
 
+// Package log implements logging which can log to multiple files at differing severity levels.
 package log
 
 import (

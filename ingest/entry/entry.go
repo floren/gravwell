@@ -6,6 +6,8 @@
  * BSD 2-clause license. See the LICENSE file for details.
  **************************************************************************/
 
+// Package entry describes Gravwell's Entry type and provides utilities for working
+// with entries.
 package entry
 
 import (
